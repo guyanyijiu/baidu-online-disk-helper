@@ -1,0 +1,42 @@
+{
+    "manifest_version": 2,
+    "name": "百度网盘离线下载助手",
+    "version": "1.0.0",
+    "description": "方便将网页中的链接直接使用百度网盘离线下载",
+    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+    "icons": {
+        "16": "img/icon.png",
+        "48": "img/icon.png",
+        "128": "img/icon.png"
+    },
+    "browser_action": {
+        "default_icon": "img/icon.png",
+        "default_title": "百度网盘离线下载助手",
+        "default_popup": "index.html"
+    },
+    "permissions": [
+        "contextMenus",
+        "activeTab",
+        "notifications",
+        "webRequest",
+        "storage",
+        "cookies",
+        "http://pan.baidu.com/*",
+        "https://pan.baidu.com/*"
+    ],
+    "background": {
+        "page": "background.html"
+    },
+    "content_scripts": [{
+        "matches": ["http://*/*", "https://*/*"],
+        "exclude_matches": ["http://localhost/*", "https://pan.baidu.com/*", "http://pan.baidu.com/*", "https://www.google.com/*", "https://www.baidu.com/*"],
+        "js": [
+            "js/content.js"
+        ],
+        "run_at": "document_start"
+    }],
+    "web_accessible_resources": [
+        "js/baidu-online-disk-helper.js"
+    ],
+    "homepage_url": "https://www.guyanyijiu.com"
+}
