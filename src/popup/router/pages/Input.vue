@@ -1,6 +1,5 @@
 <template>
   <div>
-    <br />
     <Row>
       <Col span="24">
         <Input v-model="parseUrls" :rows="10" type="textarea" placeholder="输入或粘贴资源链接到此处（每行一个）" />

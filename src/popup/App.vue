@@ -23,6 +23,6 @@ export default {
   margin-left: 0px;
   margin-right: 0px;
   width: 540px;
-  height: 800px;
+  height: 600px;
 }
 </style>
