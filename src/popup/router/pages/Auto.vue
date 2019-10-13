@@ -5,9 +5,16 @@
         <Table ref="selection" size="small" @on-selection-change="tableSelectionChange" :columns="urlTable" :data="urlList"></Table>
       </Col>
     </Row>
+    <br />
     <Row>
       <Col span="24">
         <Button type="primary" @click="startDownload" long>开始下载</Button>
+      </Col>
+    </Row>
+    <br />
+    <Row>
+      <Col span="24">
+        <Button type="warning" @click="cleanExtractUrls" long>清除</Button>
       </Col>
     </Row>
     <br />
@@ -74,6 +81,16 @@ export default {
         selectionUrlList[i] = selection[i]['url'];
       }
       this.selectionUrlList = selectionUrlList;
+    },
+    cleanExtractUrls() {
+      this.client
+        .send('cleanAutoExtractUrls', null, true)
+        .then(() => {
+          this.$router.push({ path: '/input' });
+        })
+        .catch(err => {
+          console.log(err);
+        });
     },
   },
 };

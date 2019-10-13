@@ -1,7 +1,7 @@
 {
   "name": "百度网盘离线下载助手",
   "description": "方便将网页中的链接直接使用百度网盘离线下载",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "manifest_version": 2,
   "icons": {
     "16": "icons/icon_16.png",

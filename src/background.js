@@ -179,6 +179,12 @@ server.on('connect', client => {
     }
     resolve(_isDownloading);
   });
+
+  // 清除当前自动提取的URL
+  client.on('cleanAutoExtractUrls', (urls, resolve, reject) => {
+    _autoExtractUrls = [];
+    resolve(true);
+  });
 });
 
 /**
