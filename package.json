@@ -1,6 +1,6 @@
 {
   "name": "baidu-online-disk-helper",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "方便将网页中的链接直接使用百度网盘离线下载",
   "author": "guyanyijiu",
   "license": "MIT",
