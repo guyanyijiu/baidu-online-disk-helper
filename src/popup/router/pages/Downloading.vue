@@ -41,16 +41,17 @@ export default {
   },
   created: function() {
     this.updateList();
-    this.timer = setInterval(this.updateList, 2000);
   },
   methods: {
     updateList() {
+      if (this.timer) {
+        clearTimeout(this.timer);
+      }
       this.client
         .send('getDownloadUrls', null, true)
         .then(urls => {
           if (urls.length === 0) {
-            clearInterval(this.timer);
-            this.$router.push({ path: '/' });
+            this.checkDownloadStatus();
             return;
           }
           let urlList = [];
@@ -61,10 +62,18 @@ export default {
             });
           }
           this.urlList = urlList;
+          this.timer = setTimeout(this.updateList, 3000);
         })
-        .catch(err => {
-          clearInterval(this.timer);
-        });
+        .catch(err => {});
+    },
+    checkDownloadStatus() {
+      this.client.send('getDownloadStatus', null, true).then(status => {
+        if (status) {
+          this.timer = setTimeout(this.updateList, 3000);
+        } else {
+          this.$router.push({ path: '/' });
+        }
+      });
     },
     stopDownload() {
       this.client
